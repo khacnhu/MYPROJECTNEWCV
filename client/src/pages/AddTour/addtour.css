@@ -1,0 +1,75 @@
+.addTour{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.tourForm{
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.tourForm input{
+    margin-top: 24px;
+    width: 100%;
+}
+
+.tourForm input:focus{
+    outline: none;
+}
+
+.submitTour{
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-items: center; */
+    /* align-self: center; */
+}
+
+.submitTour button{
+    padding: 4px 36px;
+    background-color: palevioletred;
+    border: none;
+    transition: ease-in-out 0.2s;
+}
+
+.submitTour button:hover{
+    background-color: purple;
+    color: blue;
+}
+
+.clearTour{
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.clearTour button{
+    padding: 4px 36px;
+    background-color: red;
+    border: none;
+    transition: ease-in 0.2s;
+}
+
+.clearTour button:hover{
+    background-color: lightgray;
+    color: red;
+}
+
+.allbutton{
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tagErrMsg{
+    color: red;
+    margin-top: 12px;
+
+}

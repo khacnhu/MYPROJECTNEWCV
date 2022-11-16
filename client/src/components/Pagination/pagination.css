@@ -1,0 +1,9 @@
+.buttonPagination{
+    margin: 0px 4px;
+    background-color: palevioletred;
+}
+
+.buttonActive{
+    margin: 0px 4px;
+    background-color: purple;
+}

@@ -1,0 +1,38 @@
+
+.slickSlider{
+    overflow: hidden;
+    padding: 40px;
+    text-align: center;
+    /* box-sizing: border-box; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+}
+
+.slicklist{
+    display: flex;
+    justify-content: center;
+}
+
+.slickSliderHeader{
+    margin-bottom: 24px;
+}
+
+.tourImage{
+    margin-left: 40px;
+    height: 400px;
+    width: 80%;
+    background-position: center;
+}
+
+.tourName{
+    color: rgb(16, 180, 235);
+    font-weight: 900;
+    font-size: 24px;
+    transition: ease-in-out 0.2s;
+}
+
+.tourName:hover{
+    transform: scale(1.2);
+}

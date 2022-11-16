@@ -1,0 +1,92 @@
+.footerContent{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+
+li{
+    list-style: none;
+}
+
+.footerOne h5{
+    margin-left: 30px;
+    /* justify-content: flex-start; */
+}
+
+.footerOne ul li{
+    font-family: 'Courier New', Courier, monospace;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.footerOne ul li:hover{
+    color: rgb(22, 155, 199);
+}
+
+
+
+.footerTwo h5{
+    margin-left: 30px;
+}
+
+.footerTwo ul li{
+    font-family: 'Courier New', Courier, monospace;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+
+}
+
+
+.footerTwo ul li:hover{
+    color: rgb(22, 155, 199);
+}
+
+
+
+.footerThree{
+
+
+}
+
+.footerPayment img{
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    width: 40px;
+    margin-bottom: 16px;
+}
+
+.footerShipment img{
+    width: 50px;
+}
+
+
+
+
+.footerFour{
+
+
+}
+
+.footerSocial img{
+    width: 60px;
+    height: 60px;
+}
+
+.footerBottom{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0px;
+    background-color: #f5f5f5;
+}
+
+.footerCountry{
+    text-align: center;
+}
+
+
+
+
+

@@ -1,0 +1,43 @@
+.containTotal{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.footerTotal{
+    width: 30%;
+    box-shadow: 2px 2px 10px 1px lightgray;
+    box-sizing: border-box;
+    padding-bottom: 12px;
+    position: relative;
+}
+
+.footerTotal img{
+    width: 100%;
+    height: 200px;
+}
+
+.footerImgName {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    color: purple;
+    font-weight: 700;
+}
+
+.footerInformation{
+    padding-left: 12px;
+}
+
+.footerInformationTitle{
+    text-align: center;
+    color: black;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.footerInforLink{
+    text-align: center;
+    
+}

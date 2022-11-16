@@ -1,0 +1,44 @@
+.register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* margin-top: 12px; */
+}
+
+.registerForm{
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 30px;
+    margin-top: 40px;
+}
+
+.registerForm label{
+    font-weight: 600;
+}
+
+.registerForm input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 4px 8px;
+    margin-bottom: 12px;
+}
+
+.registerForm input:focus{
+    outline: none;
+}
+
+.registerForm button{
+    width: 100%;
+    padding: 4px;
+    margin-top: 4px;
+    background-color: palevioletred;
+    border: none;
+    margin-bottom: 12px;
+}
+
+.registerForm button:hover{
+    background-color: purple;
+}
+

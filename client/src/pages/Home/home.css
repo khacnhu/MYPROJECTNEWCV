@@ -1,0 +1,39 @@
+.home{
+    /* width: 90%; */
+    /* margin-top: 100px; */
+    /* background-color: lightb; */
+    /* height: 100vh; */
+    /* padding-top: 100px; */
+    /* z-index: -10; */
+}
+
+.mainSize{
+    display: flex;
+    /* z-index: -10;  */
+    justify-content: center;
+}
+
+.listTour{
+    
+    width: 1200px;
+    display: flex;
+    margin-top: 80px;
+    justify-content: flex-start;
+    align-items: center;
+    /* background-color: red; */
+    flex-wrap: wrap;
+    /* margin-right: 40px; */
+    /* z-index: 10 !important; */
+    /* box-shadow: 2px 2px 10px 1px lightgray; */
+    /* z-index: -10; */
+    /* margin-left: 48px; */
+}
+
+
+.notFoundTour{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 30px; 
+}

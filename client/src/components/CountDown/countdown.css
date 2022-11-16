@@ -1,0 +1,57 @@
+.CountDown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(rgb(170, 193, 219), rgb(29, 144, 182));
+    /* margin-top: 24px; */
+    /* margin-bottom: 32px; */
+    padding: 20px;
+
+}
+
+
+.clock{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    /* width: 80%; */
+    color: purple;
+    text-shadow: 1px 1px 7px;
+    border-radius: 10px;
+    /* box-shadow: 0px 0px 5px 10px lightcoral */
+
+}
+
+
+
+.clock section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+
+.clock section p{
+    font-size: 3rem;
+}
+
+
+
+.clock section small{
+    color: white;
+    text-shadow: none;
+}
+
+.clockButton{
+    padding: 8px;
+    background-color: black;
+    width: 400px;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 18px;
+}
