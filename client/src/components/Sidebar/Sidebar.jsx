@@ -7,7 +7,7 @@ import {useSelector} from "react-redux"
 const Sidebar = () => {
 
   const {user} = useSelector((state)=> ({...state.auth}))
-  console.log(user.result._id)
+  // console.log(user.result._id)
 
 
   return (
