@@ -57,15 +57,17 @@ export const googleSignIn = createAsyncThunk(
 export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async ({formValue, id, navigate, toast}, {rejectWithValue}) => {
+    
     try {
       const response = await api.changePassword(formValue, id)
       toast.success("Change Password Successfully")
 
       console.log(response.data)
-
+      navigate("/")
       return response.data
       
     } catch (error) {
+      toast.error(error.response.data.message)
       rejectWithValue(error.message.data)
     }
   }
@@ -111,7 +113,7 @@ const authSlice = createSlice({
       state.loading = false;
       console.log(action)
       // localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
-      state.user = action.payload;
+      // state.user = action.payload;
     },
     [changePassword.rejected]: (state, action) => {
       state.loading = false;

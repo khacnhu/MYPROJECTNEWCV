@@ -12,7 +12,7 @@ API.interceptors.request.use((req)=>{
 export const signIn = (formData) => API.post("/users/signin", formData);
 export const signUp = (formData) => API.post("/users/signup", formData);
 export const googleSignIn = (result) => API.post("/users/googleSignIn", result);
-export const changePassword = (formData, id) => API.patch(`/users/changepassword/${id}`, formData)
+export const changePassword = (formData, id) => API.post(`/users/changepassword/${id}`, formData)
 
 
 export const createTour = (UploadTourData) => API.post("/tour", UploadTourData);

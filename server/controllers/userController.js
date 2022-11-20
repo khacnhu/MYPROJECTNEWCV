@@ -108,7 +108,7 @@ const changePassword = async (req, res) => {
         console.log(isCheckPassword)
 
         if(!isCheckPassword) {
-            res.status(401).json({message: "Mật khẩu cũ bạn nhập không đúng"})
+            return res.status(401).json({message: "Mật khẩu cũ bạn nhập không đúng"})
         }
         const salt = await bcrypt.genSalt(12)
         const hashedPassword = await bcrypt.hash(newPassword, salt)

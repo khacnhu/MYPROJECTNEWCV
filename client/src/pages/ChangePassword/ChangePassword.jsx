@@ -14,7 +14,8 @@ const initialState = {
 
 const ChangePassword = () => {
 
-  const id = useParams()
+  const {id} = useParams()
+  console.log(id)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -43,7 +44,7 @@ const ChangePassword = () => {
   return (
     <div style={{ paddingTop: "100px" }}>
       <div className="formChange">
-        <form onSubmit={handleChangePass}>
+        <form onSubmit={handleChangePass} method = "POST" >
           <label htmlFor="oldPassword">OLD PASSWORD</label>
           <br></br>
           <input
