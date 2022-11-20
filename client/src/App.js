@@ -16,6 +16,7 @@ import EditTour from "./pages/EditTour/EditTour";
 import NotFound from "./pages/NotFound/NotFound";
 import TagTours from "./pages/TagTours/TagTours";
 import Footer from  "./components/Footer/Footer";
+import ChangePassword from "./pages/ChangePassword/ChangePassword"
 
 function App() {
 
@@ -43,7 +44,9 @@ function App() {
               <Route path = "/" element = {<Home/>} />
               <Route path = "/login" element={<Login/>} />
               <Route path = "/register" element={<Register/>} />
-              
+              <Route path = "/changepassword/:id"  element={<ChangePassword/>} />
+
+
               <Route path = "/tours/search" element={<Home/>} />
               <Route path = "/tours/tag/:tag" element = {<TagTours/>} />
               <Route path = "/addTour" element= {<AddTour/>} />
@@ -52,6 +55,8 @@ function App() {
               <Route path = "/dashboard" element={<DashBoard/>} />
               
               <Route path = "*" element = {<NotFound/>} />
+              
+
           </Routes>  
           <Footer/>
           

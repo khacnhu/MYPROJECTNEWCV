@@ -45,7 +45,7 @@ export const googleSignIn = createAsyncThunk(
       toast.success("Login Google Gmail Successfully");
       navigate("/");
 
-      console.log(response.data);
+      // console.log(response.data);
 
       return response.data;
     } catch (error) {
@@ -53,6 +53,23 @@ export const googleSignIn = createAsyncThunk(
     }
   }
 );
+
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async ({formValue, id, navigate, toast}, {rejectWithValue}) => {
+    try {
+      const response = await api.changePassword(formValue, id)
+      toast.success("Change Password Successfully")
+
+      console.log(response.data)
+
+      return response.data
+      
+    } catch (error) {
+      rejectWithValue(error.message.data)
+    }
+  }
+)
 
 const authSlice = createSlice({
   name: "auth",
@@ -80,12 +97,27 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, action) => {
       state.loading = false;
       localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
-      state.user = action.payload;
+      state.user = action.payload
     },
     [login.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
+
+    [changePassword.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [changePassword.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action)
+      // localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      state.user = action.payload;
+    },
+    [changePassword.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
 
     [googleSignIn.pending]: (state, action) => {
       state.loading = true;

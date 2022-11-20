@@ -53,7 +53,7 @@ const Footer = () => {
               <img src={"/images/payment/mastercard.png"} alt="" />
             </a>
 
-            <img src={"/images/payment/atmdcard"} alt="" />
+            {/* <img src={"/images/payment/atmdcard"} alt="" /> */}
 
             <img src={"/images/payment/tragop.jpg"} alt="" />
           </div>

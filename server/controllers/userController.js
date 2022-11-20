@@ -88,10 +88,42 @@ const googleSignIn = async(req, res) => {
     }
 }
 
+const changePassword = async (req, res) => {
+    const id = req.params.id
+    console.log("ID: ", id)
+    const {oldPassword, newPassword} = req.body
+    console.log(oldPassword, newPassword)
+    try {
+        console.log("da vao dc try")
 
+    
+
+        const oldUser = await User.findById({_id: id})
+        console.log("OLDUSER Password: ", oldUser.password)
+        if(!oldUser) {
+            return res.status(404).json({message: "User không tồn tại trong dữ liệu"})
+        }
+
+        const isCheckPassword = await bcrypt.compare(oldPassword, oldUser.password)
+        console.log(isCheckPassword)
+
+        if(!isCheckPassword) {
+            res.status(401).json({message: "Mật khẩu cũ bạn nhập không đúng"})
+        }
+        const salt = await bcrypt.genSalt(12)
+        const hashedPassword = await bcrypt.hash(newPassword, salt)
+        oldUser.password = hashedPassword
+        await oldUser.save()
+        // return res.status(200).json("thanh cong")
+        return res.status(200).json({message: "Bạn đã đổi mật khẩu thành công", result: oldUser})
+    } catch (error) {
+        return res.status(500).json({message: "Server bị lỗi mong bạn kiểm tra lại"})
+    }
+}
 
 module.exports = {
     signup,
     signin,
-    googleSignIn
+    googleSignIn,
+    changePassword ,
 }

@@ -25,7 +25,7 @@ const CardTour = ({
   
   
   const Like = () => {
-    if (likeCount.length > 0) {
+    if (likeCount.length > 1) {
       return likeCount.find((like) => like === userId) ? (
         <>
           <button onClick={handleLike}>
@@ -50,8 +50,7 @@ const CardTour = ({
           <button onClick={handleLike}>
             <BiLike />
             <span className="likeText">
-              {" "}
-              {likeCount.length - 1} {likeCount.length === 2 ? "Like" : "Likes"}{" "}
+              {likeCount.length - 1} Like{likeCount.length > 2 ? "s" : ""}
             </span>
           </button>
         </>
