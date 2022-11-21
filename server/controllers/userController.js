@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
+const SendMail = require("../utils/sendEMail.js")
+const crypto = require("crypto");
 
 const secret = "test"
 
@@ -121,9 +123,87 @@ const changePassword = async (req, res) => {
     }
 }
 
+
+const forgotpassword = async (req, res, next) => {
+    const email = req.body.email
+    try {
+        
+        const user = await User.findOne({email})
+        if(!user){
+            res.status(404).send({statue: false, message: "EMAIL CỦA BẠN KHÔNG ĐÚNG"})
+        }
+
+        const resetToken = user.getResetPasswordToken()
+        console.log(resetToken)
+        
+        await user.save()
+
+        const resetPasswordUrl = `http://localhost:3000/passwordresset/:${resetToken}`
+
+        const messageText = `
+            <h1>ĐÂY LÀ ĐƯỜNG DẪN ĐỂ BẠN RESET PASSWORD</h1>
+            <p>XIN HÃY NHẤN VÀO ĐƯỜNG DẪN DƯỚI ĐÂY</p>
+            <a href = ${resetPasswordUrl} clicktracking = off >${resetPasswordUrl}</a>
+        `
+        try {
+            await SendMail({
+                subject: "REQUETS YÊU CẦU THAY ĐỔI PASSWORD",
+                // subject: "REQUETS YÊU CẦU THAY ĐỔI PASSWORD",
+                text: messageText
+            })
+
+            res.status(200).send({statue: true, data: "Email đã được gửi đi", result: user})
+        } catch (error) {
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpire = undefined;
+      
+            await user.save();
+      
+            //cái chỗ error này nên xem lại
+            return next(error);
+        }
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+const resetpassword = async (req, res, next) => {
+    const resetToken = req.params.resetToken
+    const resetPasswordToken = crypto.createHashh("sha26").update(resetToken).diget("hex");
+    
+    try {
+        
+        const user = await User.findOne({
+            resetPasswordToken,
+            resetPasswrordExpire: { $gt: Date.now()  }
+        })
+        
+        if (!user){
+            return res.status(400).json("CO THE CAI REFRESH TOKEN BAN GUI LEN KHONG DUNG HOAC LA BAN KHONG CO QUYEN TRUY CAP VI USER KO CO")
+
+        }
+
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+
+        await user.save()
+
+        res.status(200).send({status: true, message: "Password cua ban da duoc thay doi"})
+
+    } catch (error) {
+        next(error)
+    }
+
+}
+
 module.exports = {
     signup,
     signin,
     googleSignIn,
     changePassword ,
+    forgotpassword,
+    resetpassword,
 }
