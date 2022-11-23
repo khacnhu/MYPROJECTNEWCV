@@ -138,7 +138,7 @@ const forgotpassword = async (req, res, next) => {
         
         await user.save()
 
-        const resetPasswordUrl = `http://localhost:3000/passwordresset/:${resetToken}`
+        const resetPasswordUrl = `http://localhost:3000/passwordreset/reset/${resetToken}`
 
         const messageText = `
             <h1>ĐÂY LÀ ĐƯỜNG DẪN ĐỂ BẠN RESET PASSWORD</h1>
@@ -170,28 +170,33 @@ const forgotpassword = async (req, res, next) => {
 
 
 const resetpassword = async (req, res, next) => {
-    const resetToken = req.params.resetToken
-    const resetPasswordToken = crypto.createHashh("sha26").update(resetToken).diget("hex");
-    
+    const {resetToken} = req.params
+    console.log(resetToken)
+    const resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
     try {
-        
         const user = await User.findOne({
             resetPasswordToken,
-            resetPasswrordExpire: { $gt: Date.now()  }
+            resetPasswrordExpire: { $gt: Date.now() }
         })
         
         if (!user){
-            return res.status(400).json("CO THE CAI REFRESH TOKEN BAN GUI LEN KHONG DUNG HOAC LA BAN KHONG CO QUYEN TRUY CAP VI USER KO CO")
-
+            return res.status(400).json({message: "bạn nên xác nhận lại email"})
         }
 
-        user.password = req.body.password;
+
+        const salt = await bcrypt.genSalt(12)
+        const hashedNewPassword = await bcrypt.hash(req.body.newPassword, salt)
+        // oldUser.password = hashedPassword
+
+        user.password = hashedNewPassword
+        console.log(user.password)
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
 
         await user.save()
 
-        res.status(200).send({status: true, message: "Password cua ban da duoc thay doi"})
+        res.status(200).send({ message: "Password cua ban da duoc thay doi"})
 
     } catch (error) {
         next(error)

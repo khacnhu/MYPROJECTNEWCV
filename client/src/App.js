@@ -1,22 +1,30 @@
+import React, {useEffect} from "react"
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Header from "./components/Header/Header";
+import Footer from  "./components/Footer/Footer";
+
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
+
 import {ToastContainer} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
-import Header from "./components/Header/Header";
+
 import {setUser} from "./redux/features/authSlice"
-import React, {useEffect} from "react"
 import { useDispatch, useSelector } from "react-redux";
+
 import AddTour from "./pages/AddTour/AddTour";
 import SingleTour from "./pages/SingleTour/SingleTour";
 import DashBoard from "./pages/Dashboard/DashBoard";
 import EditTour from "./pages/EditTour/EditTour";
 import NotFound from "./pages/NotFound/NotFound";
 import TagTours from "./pages/TagTours/TagTours";
-import Footer from  "./components/Footer/Footer";
-import ChangePassword from "./pages/ChangePassword/ChangePassword"
+
 
 function App() {
 
@@ -45,6 +53,8 @@ function App() {
               <Route path = "/login" element={<Login/>} />
               <Route path = "/register" element={<Register/>} />
               <Route path = "/changepassword/:id"  element={<ChangePassword/>} />
+              <Route path = "/verifyEmail" element = {<VerifyEmail/>} />
+              <Route path = "/passwordreset/reset/:token" element = {<ResetPassword/>} />
 
 
               <Route path = "/tours/search" element={<Home/>} />
@@ -58,6 +68,7 @@ function App() {
               
 
           </Routes>  
+
           <Footer/>
           
         

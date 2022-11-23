@@ -13,7 +13,8 @@ export const signIn = (formData) => API.post("/users/signin", formData);
 export const signUp = (formData) => API.post("/users/signup", formData);
 export const googleSignIn = (result) => API.post("/users/googleSignIn", result);
 export const changePassword = (formData, id) => API.post(`/users/changepassword/${id}`, formData)
-
+export const forgotPassword = (formData) => API.post("/users/forgotpassword", formData)
+export const resetPassword = (formData, resetToken) => API.post(`/users/passwordreset/reset/${resetToken}`, formData)
 
 export const createTour = (UploadTourData) => API.post("/tour", UploadTourData);
 export const getTours = (page) => API.get(`/tour?page=${page}`)
