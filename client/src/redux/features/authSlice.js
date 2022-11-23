@@ -73,6 +73,47 @@ export const changePassword = createAsyncThunk(
   }
 )
 
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async ({formValue, navigate, toast}, {rejectWithValue}) => {
+    
+    try {
+      const response = await api.forgotPassword(formValue)
+      toast.success("Verify Email Successfully, Please check your Gmail")
+
+      console.log(response.data)
+      navigate("/login")
+      return response.data
+      
+    } catch (error) {
+      toast.error(error.response.data.message)
+      rejectWithValue(error.message.data)
+    }
+  }
+)
+
+export const resetPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async ({formValue, resetToken, navigate, toast}, {rejectWithValue}) => {
+    
+    try {
+      const response = await api.resetPassword(formValue, resetToken)
+      toast.success("Reset Password Successfully, Please check your Gmail")
+      
+      console.log(response.data)
+      navigate("/login")
+      return response.data
+      
+    } catch (error) {
+      toast.error(error.response.data.message)
+      rejectWithValue(error.message.data)
+    }
+  }
+)
+
+
+
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -111,11 +152,40 @@ const authSlice = createSlice({
     },
     [changePassword.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action)
+      // console.log(action)
       // localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
       // state.user = action.payload;
     },
     [changePassword.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+
+    [forgotPassword.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [forgotPassword.fulfilled]: (state, action) => {
+      state.loading = false;
+      // console.log(action)
+      // localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      state.user = null;
+    },
+    [forgotPassword.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    [resetPassword.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [resetPassword.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action)
+      // localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      // state.user = null;
+    },
+    [resetPassword.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
