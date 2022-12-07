@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from " react";
+import React, {useState, useRef, useEffect} from "react";
 import "./resetpassword.css";
-import useParams from "react-router-dom";
+import {useParams}  from "react-router-dom";
 import { resetPassword } from "../../redux/features/authSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -12,8 +12,9 @@ const initialState = {
 };
 
 const ResetPassword = () => {
-  const { resetToken } = useParams();
-  console.log("ResetToken: ", resetToken);
+  // console.log(useParams())
+  const  {token} = useParams()
+  console.log("Token: ",token)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,16 +41,18 @@ const ResetPassword = () => {
       toast.error("confirmPassword không đúng vs newPassword");
     } else {
       console.log(formValue);
-      // dispatch(resetPassword({formValue, resetToken,toast, navigate}))
-
+      dispatch(resetPassword({formValue, token ,toast, navigate}))
       setFormValue(initialState);
     }
   };
 
   return (
     <div className="resetPassword">
+      <div className = "resetForm" >
+
       <form onSubmit={submitReset} method="POST">
-        <label htmlFor="newPassword">New Password</label>
+        <h5>RESET PASSWORD</h5>
+        <label htmlFor="newPassword" className="labelReset" >New Password</label>
         <br></br>
         <input
           ref = {newPasswordRef}  
@@ -59,9 +62,10 @@ const ResetPassword = () => {
           name="newPassword"
           type="text"
           placeholder="type your password ... "
+          className = "inputReset"
         />
         <br></br>
-        <label htmlFor="confirmPassword">Confirm Passworrd</label>
+        <label htmlFor="confirmPassword" className="labelReset" >Confirm Passworrd</label>
         <br></br>
         <input
           value={confirmPassword}
@@ -69,11 +73,15 @@ const ResetPassword = () => {
           id="confirmPassword"
           name="confirmPassword"
           type="text"
-          placeholder="type your confirmpassword ... "
-        />
+          placeholder="type your confirm ... "
+          className = "inputReset"
+          />
         <br></br>
-        <button type="submit">ResetPassword</button>
+        <button type="submit" className = "btnReset" >ResetPassword</button>
+        <br></br>
+        <Link to = "/" >HOME</Link>
       </form>
+      </div>
     </div>
   );
 };

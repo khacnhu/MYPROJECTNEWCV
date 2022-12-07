@@ -144,6 +144,8 @@ const Login = () => {
               <MDBSpinner size="sm" role="status" tag="span" className="me-2" />
             )}
             <Link to="/register">Don't have account ? Signup</Link>
+            <br></br>
+            <Link to = "/verifyEmail" >Forgot Password ? ResetPassword</Link>
           </div>
         </form>
       </div>

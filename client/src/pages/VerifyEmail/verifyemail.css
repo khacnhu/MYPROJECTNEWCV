@@ -2,5 +2,46 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    height: 100vh
+    height: 100vh;
 }
+
+.emailForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 12px 1px rgba(0,0,0,0.4);
+}
+
+.emailVeri{
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.inputEmail{
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid black;
+    
+}
+
+.inputEmail:focus{
+    outline: none;
+}
+
+.btnEmail{
+    border: none;
+    background-color: lightblue;
+    padding: 2px 12px;
+    transition: ease-in-out 0.3s;
+}
+
+.btnEmail:hover{
+    background-color: palevioletred;
+}
+
+
+
+

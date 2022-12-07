@@ -1,9 +1,10 @@
 import React, {useState, useRef, useEffect} from "react";
 import "./verifyemail.css";
 import { forgotPassword } from "../../redux/features/authSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from  "react-router-dom"
 import { toast } from "react-toastify";
+import { MDBSpinner} from "mdb-react-ui-kit";
 
 const initialState = {
     email: "",
@@ -11,6 +12,7 @@ const initialState = {
 
 
 const VerifyEmail = () => {
+  const { loading } = useSelector((state) => ({ ...state.auth }));
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -43,13 +45,20 @@ const VerifyEmail = () => {
 
   return (
     <div className="verifyEmail">
+      <div className = "emailForm" > 
+
       <form onSubmit = {submitEmail} method = "POST" >
-        <label htmlFor = "email" >EMAIL</label>
+        <label htmlFor = "email" className="emailVeri" >VERIFY EMAIL</label>
         <br></br>
-        <input ref = {emailRef} id = "email" name = "email" value = {email} type="text" placeholder="type your email ... " onChange = {onInputChange} />
+        <input className="inputEmail" ref = {emailRef} id = "email" name = "email" value = {email} type="text" placeholder="type your email ... " onChange = {onInputChange} />
         <br></br>
-        <button type = "submit" >Verify Email</button>
+        <button type = "submit" className="btnEmail" >Verify Email</button>
+        <br></br>
+        {loading && (
+              <MDBSpinner size="sm" role="status" tag="span" className="me-2" />
+            )}
       </form>
+      </div>
     </div>
   );
 };

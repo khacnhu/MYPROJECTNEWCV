@@ -24,6 +24,9 @@ import DashBoard from "./pages/Dashboard/DashBoard";
 import EditTour from "./pages/EditTour/EditTour";
 import NotFound from "./pages/NotFound/NotFound";
 import TagTours from "./pages/TagTours/TagTours";
+import InforCompany from "./pages/InforCompany/InforCompany";
+
+import UpdateUser from "./pages/UpdateUser/UpdateUser"
 
 
 function App() {
@@ -41,13 +44,11 @@ function App() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-
   return (
     <>
       <BrowserRouter>
         <div className= {darkMode === "light" ? "App" : "AppTheme"} >
           <Header/>
-          {/* <Banner/> */}
           <Routes>
               <Route path = "/" element = {<Home/>} />
               <Route path = "/login" element={<Login/>} />
@@ -56,25 +57,25 @@ function App() {
               <Route path = "/verifyEmail" element = {<VerifyEmail/>} />
               <Route path = "/passwordreset/reset/:token" element = {<ResetPassword/>} />
 
-
+              {/* privateRoute Login user mới vào được */}
               <Route path = "/tours/search" element={<Home/>} />
               <Route path = "/tours/tag/:tag" element = {<TagTours/>} />
               <Route path = "/addTour" element= {<AddTour/>} />
               <Route path = "/editTour/:id" element = {<EditTour/>} />
               <Route path = "/tour/:id" element = {<SingleTour/>}/>
               <Route path = "/dashboard" element={<DashBoard/>} />
-              
-              <Route path = "*" element = {<NotFound/>} />
-              
 
+              <Route path = "/updateUser" element = {<UpdateUser/>} />
+              <Route path = "/inforCompany" element = {<InforCompany/>}  />
+              
+              {/* Vào trang không có đường dẫn thì hiện như component này */}
+              <Route path = "*" element = {<NotFound/>} />
           </Routes>  
 
           <Footer/>
-          
-        
         </div>
     
-          <ToastContainer/>
+        <ToastContainer/>
       </BrowserRouter>
     
     </>

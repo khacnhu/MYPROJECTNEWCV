@@ -94,10 +94,10 @@ export const forgotPassword = createAsyncThunk(
 
 export const resetPassword = createAsyncThunk(
   "auth/forgotPassword",
-  async ({formValue, resetToken, navigate, toast}, {rejectWithValue}) => {
+  async ({formValue, token, navigate, toast}, {rejectWithValue}) => {
     
     try {
-      const response = await api.resetPassword(formValue, resetToken)
+      const response = await api.resetPassword(formValue, token)
       toast.success("Reset Password Successfully, Please check your Gmail")
       
       console.log(response.data)

@@ -170,8 +170,9 @@ const forgotpassword = async (req, res, next) => {
 
 
 const resetpassword = async (req, res, next) => {
+    console.log("CHECK PARAM: ",req.params)
     const {resetToken} = req.params
-    console.log(resetToken)
+    // console.log(resetToken)
     const resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
 
     try {
@@ -204,6 +205,25 @@ const resetpassword = async (req, res, next) => {
 
 }
 
+const updateUser = async (req, res) => {
+    const id = req.params.id
+    const {firstname, lastname, email, age, phone, gender, imageFile} = req.body
+
+    try {
+        const user = await User.findByIdAndUpdate(id, {
+            name: `${firstname} ${lastname} `,
+            email,
+            age,
+            phone, 
+            gender,
+            imageFile
+        }, {new: true})
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     signup,
     signin,
@@ -211,4 +231,5 @@ module.exports = {
     changePassword ,
     forgotpassword,
     resetpassword,
+    updateUser,
 }

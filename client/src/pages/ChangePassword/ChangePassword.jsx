@@ -42,8 +42,9 @@ const ChangePassword = () => {
   }
 
   return (
-    <div style={{ paddingTop: "100px" }}>
+    <div className="changePassword">
       <div className="formChange">
+        <h4>Change Password</h4>
         <form onSubmit={handleChangePass} method = "POST" >
           <label htmlFor="oldPassword">OLD PASSWORD</label>
           <br></br>
@@ -80,7 +81,7 @@ const ChangePassword = () => {
 
           <br></br>
           <div>
-            <button>Submit</button>
+            <button type = "submit"  className="btnChangePass" >Submit</button>
           </div>
         </form>
       </div>
