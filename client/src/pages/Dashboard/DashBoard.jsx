@@ -10,9 +10,10 @@ import ModalDelete from '../../components/ModalDelete/ModalDelete';
 
 const DashBoard = () => {
 
-    const [showModal, setShowModal] = useState(false)
+    const [visible, setVisible] = useState(false)
+    const [selected, setSelected] = useState(!null)
 
-  
+
     const {user} = useSelector((state) => ({...state.auth}))
     const userId = user?.result?._id
     // console.log(userId)
@@ -34,14 +35,24 @@ const DashBoard = () => {
 
 
     const handleDelete = (id) => {
-        console.log(id)
+        setVisible(true)
+        setSelected(id)
+        // dispatch(deleteTour(id))
+        // console.log(id)
+
         
         // if(window.confirm("ARE YOU SURE ABOUT DELETE TOUR")){
-        //     dispatch(deleteTour({id, toast}))
+            // dispatch(deleteTour({id, toast}))
         // }
     }
 
-    
+    const onOkModal = () => {
+        setVisible(true)
+    }
+
+    const onCloseModal = () => {
+        setVisible(false)
+    }
 
     const handleEdit = () => {
 
@@ -97,17 +108,17 @@ const DashBoard = () => {
         }
 
         <div className='dashContain' >
-
+        <ModalDelete selected = {selected} onOkModal = {onOkModal} onCloseModal = {onCloseModal} visible = {visible} toast = {toast}  />
             {
                 userTours.map((item) => (
                     <>
-                {
+                {/* {
                     showModal ? (
                         <ModalDelete setShowModal = {setShowModal} toast = {toast}  />
                     ) : (
                         <></>
                     )
-                }
+                } */}
                     <div key = {item._id}  className = "listItem" >
                         <div className='dashImage' >
                             <img src = {item.imageFile} alt = {item.title} />
@@ -118,7 +129,7 @@ const DashBoard = () => {
                             <p><small> {excerpt(item.description)} </small></p>
                         </div>
                         <div>
-                            <AiOutlineDelete className='iconDelete' onClick = {() => handleDelete(item._id)} />
+                            <AiOutlineDelete className='iconDelete' onClick = {() => onOkModal()} />
                             <Link to = {`/editTour/${item._id}`} >
                                 <AiOutlineEdit className = "iconEdit" onClick = {handleEdit} />
                             

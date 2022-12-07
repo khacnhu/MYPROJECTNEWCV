@@ -1,6 +1,8 @@
 import React from "react";
 import "./countdown.css"
 import { useNavigate } from "react-router-dom";
+import useSelector from "react-redux"
+
 
 const CountDown = ({
   timerDays,
@@ -8,6 +10,8 @@ const CountDown = ({
   timerMinutes,
   timerSeconds,
 }) => {
+
+  const { user } = useSelector((state) => ({ ...state.auth }))
 
     const navigate = useNavigate()
 
@@ -60,7 +64,11 @@ const CountDown = ({
           </section>
         </section>
       </div>
-      <button className="clockButton" onClick={changeLink} >REGISTER ACCOUNT</button>
+      {
+        user ? (<p className = "footerCountdown">WELCOME TO MY FAMILY</p>) : (
+          <button className="clockButton" onClick={changeLink} >REGISTER ACCOUNT</button>
+        )
+      }
     </div>
   );
 };

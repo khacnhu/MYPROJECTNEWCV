@@ -2,19 +2,22 @@ import React, {useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import "./tagtour.css";
 import {useSelector, useDispatch} from "react-redux"
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { getToursByTag } from "../../redux/features/tourSlice";
 import excerpt from "../../utils/excerpt";
 
 const TagTours = () => {
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const {tag} = useParams()
-  console.log(tag)
   const {tagTours, loading} = useSelector((state)=>({...state.tour}))
-  console.log(tagTours)
+
+  useEffect(() => {
+    // setTimeout
+    window.scrollTo(0, 20)
+  }, [])
 
   useEffect(()=>{
     if(tag){
@@ -22,6 +25,11 @@ const TagTours = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tag])
+
+
+  // if(loading) {
+  //   return <div>..... LOADING .....</div>
+  // }
 
   return (
     <div className="tagTour">

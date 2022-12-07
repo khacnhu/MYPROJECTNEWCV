@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
 
     googleId: {
         type: String,
-        required:false
+        require:false
     },
 
     id: {
@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({
     },
     gender: {
         type: String,
-        required: false
+        require: false
     },
 
     age: {
@@ -40,9 +40,19 @@ const userSchema = mongoose.Schema({
         require: false
     },
 
+    phone: {
+        type: Number,
+        require:(false)
+    },
+
     imageFile: {
         type: String,
         require: false
+    },
+
+    isAdmin: {
+        type: Boolean,
+        default: false
     },
 
     resetPasswordToken: String,

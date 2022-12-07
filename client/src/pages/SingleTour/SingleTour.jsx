@@ -6,6 +6,7 @@ import moment from "moment";
 import "./singletour.css";
 import { BiTime } from "react-icons/bi";
 import RelatedTour from "../../components/RelatedTour/RelatedTour";
+import Star from "../../components/Star/Star"
 
 const SingleTour = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,10 @@ const SingleTour = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
-
+  
   useEffect(() => {
     if (id) {
+      window.scrollTo(0, 50)
       dispatch(getTour(id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,6 +55,9 @@ const SingleTour = () => {
                 ))}
             </div>
             <br></br>
+            <div>
+              <Star/>
+            </div>
             <div className="singleTime">
               <small className="text-muted">
                 <BiTime />

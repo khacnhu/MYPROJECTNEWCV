@@ -210,7 +210,7 @@ const updateUser = async (req, res) => {
     const {firstname, lastname, email, age, phone, gender, imageFile} = req.body
 
     try {
-        const user = await User.findByIdAndUpdate(id, {
+        const updatedUser = await User.findByIdAndUpdate(id, {
             name: `${firstname} ${lastname} `,
             email,
             age,
@@ -218,6 +218,8 @@ const updateUser = async (req, res) => {
             gender,
             imageFile
         }, {new: true})
+        
+        return res.status(200).json({statue: true, updatedUser})
 
     } catch (error) {
         next(error)

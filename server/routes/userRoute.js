@@ -6,9 +6,9 @@ const { auth } = require("../middlewares/auth");
 router.post("/signin", signin);
 router.post("/signup", signup)
 router.post("/googleSignIn", googleSignIn);
-router.post("/changepassword/:id",auth  ,changePassword)
+router.post("/changepassword/:id",auth ,changePassword)
 router.post("/forgotpassword",forgotpassword)
 router.post("/passwordreset/reset/:resetToken", resetpassword)
-router.put("/updateuser",   updateUser)
+router.put("/updateuser/:id",auth ,updateUser)
 
 module.exports = router
